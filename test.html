@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+    <h2>Deck of Cards</h2>
+<body>
+<script>
+var cards = [];
+for(var i = 1; i < 14; i++){
+    if(i === 1){
+       cards.push('Ace of Spades' , 'Ace of Diamonds', 'Ace of Hearts', 'Ace of Clubs')  
+    }if(i === 11){
+          cards.push('Jack of Spades' , 'Jack of Diamonds', 'Jack of Hearts', 'Jack of Clubs')  
+    }if(i === 12){
+          cards.push('Queen of Spades' , 'Queen of Diamonds', 'Queen of Hearts', 'Queen of Clubs')  
+    }
+    if(i === 13){
+          cards.push('King of Spades' , 'King of Diamonds', 'King of Hearts', 'King of Clubs')  
+    }
+    else  if(i > 1 && i < 11){
+        cards.push(i +  ' of Spades', i +  ' of Diamonds', i +  ' of Hearts' , i +  ' of Clubs')
+    }
+   
+}    
+
+//empty array for the hand
+var hand = ["empty " ,  " empty" ,  "empty"];
+
+var i = 0;  //counts cards for the hand
+
+function cardGameRandom(){
+while (hand[2] == "empty"){   //draw till 3 cards are dealt
+// pick a card
+var picked = Math.floor(Math.random()*52);
+//check for duplications, then deal
+if (cards[picked] != "dealt") {
+   hand[i] = cards[picked];
+   cards[picked] = "dealt";
+   i++;    
+   }
+} 
+    //test code
+document.write(hand.toString());
+}
+    
+function cardGameInorder(){
+while (hand[2] == "empty"){   //draw till 3 cards are dealt
+// pick a card
+var picked = Math.floor(Math.random()*52);
+    
+//check for duplications, then deal
+if (cards[picked] != "dealt") {
+   hand[i] = cards[picked];
+   cards[picked] = "dealt";
+   i++;    
+   }
+}
+    //test code
+hand.sort( (a, b) => parseInt(a, 10) - parseInt(b, 10))
+document.write(hand.toString());
+}
+    
+ function cardGameReverse(){
+while (hand[2] == "empty"){   
+//draw till 3 cards are dealt
+// pick a card
+var picked = Math.floor(Math.random()*52);
+//check for duplications, then deal
+if (cards[picked] != "dealt") {
+   hand[i] = cards[picked];
+   cards[picked] = "dealt";
+   i++;    
+   }
+}
+//test code
+hand.sort( (a, b) => parseInt(b, 10) - parseInt(a, 10))
+document.write(hand.toString());
+
+}   
+</script>
+    <button onclick="cardGameRandom()">Random</button> 
+    <button onclick="cardGameInorder()">List Inorder </button> 
+    <button onclick="cardGameReverse()">List Reverse</button> 
+</body>
+</html>

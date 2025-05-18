@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style> 
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #4f9de1; /* Light blue background */
+        color: #211f1f; /* Dark text */
+        }
+        input[type="button"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        input[type="text"] {
+            
+            border: 2px solid #007BFF; /* Blue border */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="button"] {
+          border-radius: 5px;
+            background-color: #171818; /* Blue button */
+            color: rgb(236, 228, 228);
+            
+        }
+         answer {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #56595c; /* Blue text for answer */
+        }
+</style>
+    <script language="JavaScript">
+         function getSum() {
+            var first = Number(document.theForm.elements[0].value);
+            var second = Number(document.theForm.elements[1].value);
+            var sum = first + second;
+            document.getElementById("answer").innerHTML = "Sum: " + sum;
+        }
+
+        function getDifference() {
+            var first = Number(document.theForm.elements[0].value);
+            var second = Number(document.theForm.elements[1].value);
+            var difference = first - second;
+            document.getElementById("answer").innerHTML = "Difference: " + difference;
+        }
+
+        function getProduct() {
+            var first = Number(document.theForm.elements[0].value);
+            var second = Number(document.theForm.elements[1].value);
+            var product = first * second;
+            document.getElementById("answer").innerHTML = "Product: " + product;
+        }
+
+        function getQuotient() {
+            var first = Number(document.theForm.elements[0].value);
+            var second = Number(document.theForm.elements[1].value);
+            if (second === 0) {
+                document.getElementById("answer").innerHTML = "Error: Division by zero.";
+            } else {
+                var quotient = first / second;
+                document.getElementById("answer").innerHTML = "Quotient: " + quotient;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form name="theForm">
+        Enter a number in each box:<br>
+        <input type="text" required><br>
+        <input type="text" required><br>
+        <input type="button" value="Sum" onClick="getSum()">
+        <input type="button" value="Difference" onClick="getDifference()">
+        <input type="button" value="Product" onClick="getProduct()">
+        <input type="button" value="Quotient" onClick="getQuotient()">
+        <p id="answer"></p>
+    </form>
+</body>
+</html>

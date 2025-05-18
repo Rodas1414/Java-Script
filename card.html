@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+    class Card{
+        
+        constructor(suit, rank, isVisible){
+            var suits = ['hearts','clubs','diamonds','spades']
+            var ranks = ['ace','jack','queen','king',2,3,4,5,6,7,8,9,10]
+            
+            if(!suits.includes(suit)){
+                throw 'incorrect suit'
+            }
+            if(!ranks.includes(rank) || rank < 2 || rank > 10 ){
+                throw 'incorrect rank'
+            }
+           this.suit = suit;
+            this.rank = rank;
+            this.isVisible = isVisible;
+        }
+        show(){
+          this.isVisible = true  
+        }
+        hide(){
+        this.isVisible = false
+        }
+    }
+    var card1 = new Card('spades',7,false)
+    var card2 = new Card('hearts','jack',true)
+    card1.show()
+    card2.hide()
+    
+    document.write("Card 1: " + card1.suit + " " + card1.rank + " " + card1.isVisible + "<br>")
+    document.write("Card 2: " + card2.suit + " " + card2.rank + " " + card2.isVisible + "<br>")
+
+
+</script>
+</body>
+</html>

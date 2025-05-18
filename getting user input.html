@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments on Programming Skills</title>
+    <script>
+        function getComment() {
+            // Prompt the user for a comment
+            const comment = prompt("Please enter your comment about my programming skills:");
+
+            // Open a new window and write the comment
+            const newWindow = window.open("", "CommentsWindow", "width=400,height=200");
+            newWindow.document.write("<h1>Your Comment</h1>");
+            newWindow.document.write("<p>" + comment + "</p>");
+            newWindow.document.close();
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome! How do you think I do :)</h1>
+    <button onclick="getComment()">Leave a Comment</button>
+</body>
+</html>

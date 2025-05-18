@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Make a Deal!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .door {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .door:hover {
+            background-color: #dd7d7d;
+        }
+
+        .selected {
+            background-color: #be9c9c;
+        }
+
+        .revealed {
+            background-color: #918383;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 
+Pseudocode for Let's Make a Deal game
+
+1. Define prizes behind each door.
+   - Door #1: Car
+   - Door #2: $100
+   - Door #3: Goat
+
+2. Prompt the user to pick a door (1, 2, or 3).
+
+3. Randomly select a door to reveal that does not contain the car.
+
+4. Offer the user a choice to stick with their original pick or switch to another door.
+
+5. Reveal the prize behind the user's final choice.
+
+6. Display the result to the user.
+-->
+
+<div id="game-container">
+    <h1>Let's Make a Deal!</h1>
+    <div id="doors">
+        <div class="door" id="door-1">Door #1</div>
+        <div class="door" id="door-2">Door #2</div>
+        <div class="door" id="door-3">Door #3</div>
+    </div>
+    <div id="result"></div>
+</div>
+
+<script>
+    // Define the prizes behind each door
+    const prizes = {
+        1: "Car",
+        2: "$100",
+        3: "Goat"
+    };
+
+    // Function to play the game
+    function playGame() {
+        // Add event listeners to the doors
+        document.querySelectorAll('.door').forEach((door, index) => {
+            door.addEventListener('click', () => {
+                // Prompt user to pick a door
+                let userChoice = index + 1;
+
+                // Randomly reveal a door that is not the user's choice and does not have the car
+                let revealedDoor;
+                do {
+                    revealedDoor = Math.floor(Math.random() * 3) + 1;
+                } while (revealedDoor === userChoice || prizes[revealedDoor] === "Car");
+
+                // Reveal the door
+                document.getElementById(`door-${revealedDoor}`).classList.add('revealed');
+                document.getElementById(`door-${revealedDoor}`).textContent = `Door #${revealedDoor} has a ${prizes[revealedDoor]}`;
+
+                // Ask if the user wants to switch
+                let switchChoice = confirm("Do you want to switch your choice?");
+
+                // Determine the final choice
+                if (switchChoice) {
+                    // Switch to the remaining door
+                    let remainingDoor = [1, 2, 3].find(door => door !== userChoice && door !== revealedDoor);
+                    userChoice = remainingDoor;
+                }
+
+                // Reveal the prize behind the user's final choice
+                document.getElementById(`door-${userChoice}`).classList.add('selected');
+                document.getElementById('result').textContent = `You chose Door #${userChoice} and behind it is a ${prizes[userChoice]}!`;
+            });
+        });
+    }
+
+    // Start the game
+    playGame();
+</script>
+
+</body>
+</html>

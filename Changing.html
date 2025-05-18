@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Page Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        table {
+            border: 10px solid rgb(203, 219, 233);
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        td {
+            border: 2px solid black;
+            padding: 15px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        button {
+            background-color: #1b1d1b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #151615;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<!-- HTML Table for Testing Purposes -->
+<table id="myTable">
+    <tr id="row1" style="color: rgb(24, 23, 24)">
+        <td id="1.1">Row 1 Col 1</td>
+        <td id="1.2">Row 1 Col 2</td>
+    </tr>
+</table>
+
+<!-- Buttons to Launch Functions -->
+<div>
+    <button type="button" onclick="changeTextColor()">Change Text Color</button>
+    <button type="button" onclick="changeBackgroundColor()">Change Background Color</button>
+    <button type="button" onclick="increaseFontSize()">Increase Font Size</button>
+    <button type="button" onclick="changeBorder()">Change Border Style</button>
+    
+</div>
+
+<script>
+// Function to change text color from gray to black and back again
+function changeTextColor() {
+    var row = document.getElementById("row1");
+    var textcolor = row.style.color;
+    row.style.color = (textcolor === "gray") ? "black" : "gray";
+}
+
+// Function to change the background color of the table
+function changeBackgroundColor() {
+    var table = document.getElementById("myTable");
+    var currentColor = table.style.backgroundColor;
+    table.style.backgroundColor = (currentColor === "yellow") ? "white" : "yellow";
+}
+
+// Function to increase the font size of the text in the row
+function increaseFontSize() {
+    var row = document.getElementById("row1");
+    var currentSize = window.getComputedStyle(row).fontSize;
+    var newSize = parseFloat(currentSize) + 2; // Increase font size by 2px
+    row.style.fontSize = newSize + "px";
+}
+
+// Function to change the border style of the table
+function changeBorder() {
+    var table = document.getElementById("myTable");
+    table.style.border = (table.style.border === "10px solid rgb(203, 219, 233)") 
+        ? "5px dashed red" 
+        : "10px solid rgb(203, 219, 233)";
+}
+
+
+
+</script>
+
+</body>
+</html>

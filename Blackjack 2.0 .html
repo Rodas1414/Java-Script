@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Do you want to play Blackjack?</h2>
+<button onclick="blackJackGame()">YES</button>    
+<button onclick="rejectingBlackJack()">NO</button>    
+<script>
+//initialize all variables
+var card = 0;
+var total = 0;
+var hitMe = true;
+var dealer = 0;
+var count = 10;
+
+
+//1st card
+function blackJackGame(){
+while(count > 0){
+count--
+hitMe = prompt("Current total: " + total, "Take a card? Y/N");
+if (hitMe == "Y"){hitMe = true;}
+else {hitMe = false;}
+if(hitMe){
+card = Math.ceil(11*Math.random());
+total += card;
+    
+}
+}
+ dealer = Math.ceil(11*Math.random()) + Math.ceil(11*Math.random()); //dealer always takes 2 cards
+alert("Your hand is worth " + total + ". Dealer got " + dealer + ".");
+}    
+function rejectingBlackJack(){
+    document.write("See you next time.")
+}
+//final total
+
+
+</script>
+
+</body>
+</html>

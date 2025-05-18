@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment on Programming Skills</title>
+    <script>
+        function getComment() {
+            // Prompt the user for a comment
+            const comment = prompt("What is your comment about my programming skills?", "");
+
+            // Check if the user entered a comment
+            if (comment) {
+                // Create a new page using document.write
+                document.open();
+                document.write(`
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Your Comment</title>
+                    </head>
+                    <body>
+                        <p>${comment}</p>
+                    </body>
+                    </html>
+                `);
+                document.close();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome! How do you think I did :)</h1>
+    <button onclick="getComment()">Leave a Comment</button>
+</body>
+</html>

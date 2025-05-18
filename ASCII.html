@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollow Square with Asterisks</title>
+</head>
+<body>
+
+<h2>Please enter a square size between 3 and 30:</h2>
+<form id="square-form">
+    <input type="text" id="square-size" placeholder="Enter size">
+    <input type="submit" value="Draw Square">
+</form>
+<pre id="square-output"></pre>
+
+<script>
+    document.getElementById('square-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        const sizeInput = document.getElementById('square-size').value;
+        const size = Number(sizeInput);
+
+        if (!isNaN(size) && size >= 3 && size <= 30) {
+            const squareOutput = drawHollowSquare(size);
+            document.getElementById('square-output').textContent = squareOutput;
+        } else {
+            alert("Please enter a valid number between 3 and 30.");
+        }
+    });
+
+    function drawHollowSquare(size) {
+        let output = '';
+
+        // Top row
+        output += '*'.repeat(size) + '\n';
+
+        // Middle rows
+        for (let i = 1; i < size - 1; i++) {
+            output += '*' + ' '.repeat(size - 2) + '*' + '\n';
+        }
+
+        // Bottom row (only if size > 1)
+        if (size > 1) {
+            output += '*'.repeat(size);
+        }
+
+        return output;
+    }
+</script>
+
+</body>
+</html>

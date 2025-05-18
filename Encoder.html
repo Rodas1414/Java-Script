@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASCII Encoder</title>
+</head>
+<body>
+  <form>
+    <label for="inputText">Enter a text:</label>
+    <input type="text" id="inputText" name="inputText"><br><br>
+    <button type="button" onclick="encodeText()">Encode</button>
+    <div id="asciiOutput"></div>
+  </form>
+
+  <script>
+    function encodeText() {
+      const inputText = document.getElementById("inputText").value;
+      const asciiOutput = document.getElementById("asciiOutput");
+      let asciiCodes = [];
+
+      for (let i = 0; i < inputText.length; i++) {
+        asciiCodes.push(inputText.charCodeAt(i));
+      }
+
+      asciiOutput.innerHTML = "ASCII codes: " + asciiCodes.join(", ");
+    }
+  </script>
+</body>
+</html>

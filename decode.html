@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    
+<body>
+ <h3> Type a number from 0-127</h3>   
+<form>
+<input type="number" placeHolder="Type number.." id="name"/>
+<button type="button" onclick="myFunction()">Submit</button>
+</form>
+    
+<script>
+function myFunction() {
+    var i = document.getElementById('name').value;
+    if(i < 0 || i > 127 ) { 
+        alert ("Wrong Number, Try again") 
+    }
+    else{
+       {document.write(String.fromCharCode(i) + " : " + i);} 
+    }
+        
+
+    }
+</script>
+
+</body>
+</html>

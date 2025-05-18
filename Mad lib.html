@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mad Lib: Adventure Time</title>
+    <script language="JavaScript">
+        // Adventure Mad Lib JavaScript
+        // This script gathers user input from a form and displays a funny adventure story.
+
+        function reveal() {
+            // Get values from the input fields
+            var adjective = document.theForm.elements[0].value; // Adjective
+            var noun = document.theForm.elements[1].value; // Noun
+            
+            // Display the mad lib story using document.write
+            document.write("Today was a " + adjective + " day! I found a " + noun + " and it changed everything!");
+        }
+    </script>
+</head>
+<body>
+    <form name="theForm" style="display: flex; align-items: center;">
+        <label for="adjective">Type an adjective:</label>
+        <input type="text" id="adjective" required>
+        
+        <label for="noun" style="margin-left: 10px;">Type a noun:</label>
+        <input type="text" id="noun" required>
+        
+        <input type="button" value="Submit" onClick="reveal()" style="margin-left: 10px;">
+    </form>
+</body>
+</html>

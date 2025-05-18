@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Blackjack</h1>
+
+<script>
+// Initialize variables
+var total = 0;
+var dealer = 0;
+var hitMe = true;
+
+// Function to draw a card
+function getCard() {
+    return Math.ceil(11 * Math.random());
+}
+
+// Player's turn
+while (hitMe) {
+    // Prompt player for input
+    hitMe = prompt("Current total: " + total + ". Do you want to take a card? (Y/N)");
+    
+    // Check player's choice
+    if (hitMe === "Y") {
+        var card = getCard(); // Draw a card
+        total += card; // Update total
+        alert("You drew a " + card + ". Your new total is: " + total);
+        
+        // Check if total exceeds 21 (bust)
+        if (total > 21) {
+            alert("Busted! Your total is " + total + "."); // Notify the player
+            hitMe = false; // End the loop
+        }
+    } else if (hitMe === "N") {
+        hitMe = false; // Player chose to stop
+    } else {
+        alert("Please enter 'Y' or 'N'."); // Invalid input
+    }
+}
+
+// Dealer's turn (always draws 2 cards)
+if (total <= 21) {
+    dealer = getCard() + getCard(); // Dealer draws two cards
+    alert("Your total: " + total + ". Dealer's total: " + dealer + "."); // Show results
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakfast Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e7c5c5; /* Light blue background */
+        }
+        h1 {
+            font-size: 1em; /* Smaller font size for the question */
+            display: inline; /* Keep the question on the same line */
+            margin-right: 10px; /* Space between the question and input */
+
+        }
+        #formContainer {
+            display: inline-block; /* Aligns input and button inline with the question */
+        }
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #nameInput {
+            padding: 5px; /* Padding inside the input */
+            border: 2px solid #c08989; /* Border color */
+            border-radius: 4px; /* Rounded corners */
+            background-color: #a8a5a5; /* Light blue background */
+            color: #333; /* Text color */
+        }
+    </style>
+</head>
+<body>
+    <h1>What do you want for breakfast?</h1>
+    <div id="formContainer">
+        <form id="nameForm" onsubmit="return handleSubmit();">
+            <input type="text" id="nameInput" placeholder="Anything" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <div id="output"></div>
+
+    <script>
+        function handleSubmit() {
+            const name = document.getElementById("nameInput").value;
+            const date = new Date().toLocaleString(); // Format the date and time
+            alert(name);
+            return false; // Prevent form submission
+        }
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!-- 
+Pseudocode:
+
+1. Initialize three doors with random prizes behind each door
+2. Ask the user to choose a door (Door #1, Door #2, or Door #3)
+3. Reveal one of the remaining two doors that does not have a prize
+4. Ask the user if they want to stick with their original choice or switch to the other unopened door
+5. Reveal the prize behind the chosen door
+6. Display the result to the user
+-->
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  
+    .door {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+      padding: 20px;
+      cursor: pointer;
+    }
+  
+    .door:hover {
+      background-color: #ccc;
+    }
+  
+    .selected {
+      background-color: #aaa;
+    }
+  
+    .revealed {
+      background-color: #ccc;
+    }
+  </style>
+  
+  <div id="game-container">
+    <h1>Let's Make a Deal!</h1>
+    <div id="doors">
+      <div class="door" id="door-1">Door #1</div>
+      <div class="door" id="door-2">Door #2</div>
+      <div class="door" id="door-3">Door #3</div>
+    </div>
+    <div id="result"></div>
+  </div>
+  
+  <script>
+    // Initialize three doors with random prizes behind each door
+    let doors = [
+      { prize: getRandomPrize(), opened: false, element: document.getElementById('door-1') },
+      { prize: getRandomPrize(), opened: false, element: document.getElementById('door-2') },
+      { prize: getRandomPrize(), opened: false, element: document.getElementById('door-3') }
+    ];
+  
+    // Function to generate a random prize
+    function getRandomPrize() {
+      let prizes = ["Car", "Cash", "Donut"];
+      return prizes[Math.floor(Math.random() * prizes.length)];
+    }
+  
+    // Add event listeners to the doors
+    doors.forEach((door, index) => {
+      door.element.addEventListener('click', () => {
+        // Ask the user to choose a door
+        if (!door.opened) {
+          chooseDoor(index);
+        }
+      });
+    });
+  
+    // Function to choose a door
+    function chooseDoor(index) {
+      // Reveal one of the remaining two doors that does not have a prize
+      let revealedDoorIndex;
+      for (let i = 0; i < doors.length; i++) {
+        if (i !== index && doors[i].prize !== "Car") {
+          revealedDoorIndex = i;
+          doors[i].opened = true;
+          doors[i].element.classList.add('revealed');
+          doors[i].element.textContent = `Door #${i + 1} is empty`;
+          break;
+        }
+      }
+  
+      // Ask the user if they want to stick with their original choice or switch to the other unopened door
+      let stickOrSwitch = confirm(`You chose Door #${index + 1}. Door #${revealedDoorIndex + 1} is empty. Do you want to stick with your original choice or switch to the other door?`);
+  
+      // Reveal the prize behind the chosen door
+      let chosenDoor;
+      if (stickOrSwitch) {
+        chosenDoor = doors[index];
+      } else {
+        for (let i = 0; i < doors.length; i++) {
+          if (i !== index && i !== revealedDoorIndex) {
+            chosenDoor = doors[i];
+            break;
+          }
+        }
+      }
+  
+      chosenDoor.opened = true;
+      chosenDoor.element.classList.add('selected');
+      chosenDoor.element.textContent = `Door #${chosenDoor.element.id.replace('door-', '')}`;
+  
+      // Display the result to the user
+      let result = document.getElementById('result');
+      result.textContent = `You chose Door #${chosenDoor.element.id.replace('door-', '')}. The prize behind the chosen door is a ${chosenDoor.prize}!`;
+    }
+  </script>
